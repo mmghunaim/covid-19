@@ -36,4 +36,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function actions()
+    {
+        return $this->hasMany(Action::class);
+    }
+
+    public function path()
+    {
+        return "users/$this->id";
+    }
+
+    public function addActions($actions)
+    {
+        foreach ($actions['actions'] as $action){
+            $data[] = ['action' => $action];
+        }
+        return $this->actions()->createMany($data);
+    }
 }

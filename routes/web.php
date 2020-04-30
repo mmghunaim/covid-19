@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::group(['middleware'=> 'auth:web'], function () {
+    Route::resource('actions', 'ActionController');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
