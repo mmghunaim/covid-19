@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ActionRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.
@@ -13,15 +13,9 @@ class ActionRequest extends FormRequest
      */
     public function rules()
     {
-        if ($this->getMethod() == 'PATCH') {
-            return [
-                'action' => 'sometimes|required'
-            ];
-        }
-
         return [
-            'action' => 'required',
+            'name'  => 'sometimes|required',
+            'email' => 'sometimes|required|unique:users,email'
         ];
-
     }
 }

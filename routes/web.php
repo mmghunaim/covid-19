@@ -17,9 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::group(['middleware'=> 'auth:web'], function () {
     Route::resource('actions', 'ActionController');
 });
+
+Route::resource('users', 'UserController');
 
 Auth::routes();
 

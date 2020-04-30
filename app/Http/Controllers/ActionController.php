@@ -9,21 +9,11 @@ use Illuminate\Http\Request;
 class ActionController extends Controller
 {
 
-    public function create()
-    {
-
-    }
-
     public function store(ActionRequest $request)
     {
-        auth()->user()->addActions($request->validated());
+        auth()->user()->addAction($request->validated());
 
         return redirect('users/'.auth()->id());
-    }
-
-    public function edit()
-    {
-
     }
 
     public function update(ActionRequest $request,Action $action)

@@ -44,14 +44,11 @@ class User extends Authenticatable
 
     public function path()
     {
-        return "users/$this->id";
+        return "/users/$this->id";
     }
 
-    public function addActions($actions)
+    public function addAction($request)
     {
-        foreach ($actions['actions'] as $action){
-            $data[] = ['action' => $action];
-        }
-        return $this->actions()->createMany($data);
+        return $this->actions()->create($request);
     }
 }

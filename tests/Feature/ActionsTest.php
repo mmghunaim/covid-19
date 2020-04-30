@@ -74,7 +74,6 @@ class ActionsTest extends TestCase
         $action->refresh();
 
         $this->assertEquals('action changed', $action->action);
-
     }
 
     /** @test * */
