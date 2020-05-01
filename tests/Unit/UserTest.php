@@ -24,26 +24,16 @@ class UserTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->assertEquals('users/' . $user->id, $user->path());
+        $this->assertEquals('/users/' . $user->id, $user->path());
     }
 
     /** @test * */
     public function it_have_add_actions_method()
     {
-        $this->withoutExceptionHandling();
-
         $user = factory(User::class)->create();
 
-        $user->addActions(request()->merge(
-            [
-                'actions' =>
-                    [
-                        'Play games',
-                        'Other stuff',
-                    ]
-            ]
-        ));
+        $user->addAction(['action' => 'zoom with friends']);
 
-        $this->assertCount(2, $user->actions);
+        $this->assertCount(1, $user->actions);
     }
 }

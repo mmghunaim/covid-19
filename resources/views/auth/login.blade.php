@@ -23,8 +23,8 @@
                         value="{{ old('email') }}" required autocomplete="email" autofocus>
 
                 @error('email')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                <span class="text-xs italic text-error" role="alert">
+                    {{ $message }}
                 </span>
                 @enderror
             </div>
@@ -44,8 +44,8 @@
                         class="input bg-transparent border border-grey-600 bg-card rounded p-2 text-xs w-full form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
                 @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
+                <span class="text-xs italic text-error" role="alert">
+                    {{ $message }}
                 </span>
                 @enderror
             </div>

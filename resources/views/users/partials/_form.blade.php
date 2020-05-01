@@ -10,10 +10,12 @@
                 value="{{ $user->name }}"
                 required
         >
+        @error('name')
+        <span class="text-xs italic text-error" role="alert">
+                    {{ $message }}
+                </span>
+        @enderror
     </div>
-    @error('name')
-    <div class="text-red">{{ $message }}</div>
-    @enderror
 </div>
 
 <div class="field mb-6">
@@ -27,10 +29,12 @@
                 value="{{ $user->email }}"
                 required
         >
+        @error('email')
+        <span class="text-xs italic text-error" role="alert">
+                    {{ $message }}
+                </span>
+        @enderror
     </div>
-    @error('email')
-    <div class="alert alert-danger">{{ $message }}</div>
-    @enderror
 </div>
 
 <div class="field">

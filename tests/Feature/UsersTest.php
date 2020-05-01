@@ -24,7 +24,7 @@ class UsersTest extends TestCase
 
         $this->post('register', $data)
             ->assertStatus(302)
-            ->assertRedirect('/');
+            ->assertRedirect('/home');
 
         $this->assertEquals(1, User::count());
 
@@ -81,10 +81,10 @@ class UsersTest extends TestCase
             UserRequest::class
         );
 
-        $this->assertDatabaseHas('actions', $data);
+        $this->assertDatabaseHas('users', $data);
 
-        $action->refresh();
+        $user->refresh();
 
-        $this->assertEquals('action changed', $action->action);
+        $this->assertEquals('bar', $user->name);
     }
 }

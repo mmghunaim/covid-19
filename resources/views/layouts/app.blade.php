@@ -47,7 +47,7 @@
 
                         @else
                             <div class="mr-6" style="line-height: 2rem">
-                                <a href="home">Home</a>
+                                <a href="/home">Home</a>
                             </div>
 
                             <dropdown align="right" width="200px">

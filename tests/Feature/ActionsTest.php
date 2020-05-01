@@ -26,14 +26,7 @@ class ActionsTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $actions = [
-            'Play games',
-            'Other stuff',
-        ];
-
-        $this->actingAs($user)->get('actions/create')->assertStatus(200);
-
-        $this->actingAs($user)->post('actions', ['actions' => $actions])
+        $this->actingAs($user)->post('actions', ['action' => 'Play games'])
             ->assertStatus(302)
             ->assertRedirect($user->path());
 
@@ -43,9 +36,9 @@ class ActionsTest extends TestCase
             ActionRequest::class
         );
 
-        $this->assertCount(2, $user->actions);
+        $this->assertCount(1, $user->actions);
 
-        $this->assertEquals('Play games', $user->actions[0]->action);
+        $this->assertEquals('Play games', $user->actions()->first()->action);
     }
 
     /** @test * */
@@ -55,7 +48,7 @@ class ActionsTest extends TestCase
 
         $this->assertEquals('before change', $action->action);
 
-        $this->actingAs($action->user)->get($action->path() . '/edit')->assertStatus(200);
+//        $this->actingAs($action->user)->get($action->path() . '/edit')->assertStatus(200);
 
         $this->actingAs($action->user)
             ->patch($action->path(), $data = [
@@ -113,9 +106,7 @@ class ActionsTest extends TestCase
     {
         $user = factory(User::class)->create();
 
-        $this->actingAs($user)->post('actions')->assertSessionHasErrors('actions');
-
-        $this->actingAs($user)->post('actions', ['actions' => 'string'])->assertSessionHasErrors('actions');
+        $this->actingAs($user)->post('actions')->assertSessionHasErrors('action');
     }
 
     /** @test * */

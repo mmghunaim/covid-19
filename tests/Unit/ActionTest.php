@@ -31,7 +31,7 @@ class ActionTest extends TestCase
     public function validation_rules_on_action_creation()
     {
         $this->assertExactValidationRules([
-            'actions' => 'required|array|min:1',
+            'action' => 'required',
         ], (new ActionRequest())->rules());
     }
 }

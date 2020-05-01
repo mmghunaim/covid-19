@@ -15,7 +15,7 @@ class UserRequest extends FormRequest
     {
         return [
             'name'  => 'sometimes|required',
-            'email' => 'sometimes|required|unique:users,email'
+            'email' => 'sometimes|required|email|unique:users,email,'.$this->segment(2),
         ];
     }
 }
